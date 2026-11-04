@@ -29,6 +29,7 @@ public class SaverVpnService extends VpnService {
     public static volatile boolean running;
     public static volatile String lastError;
     public static volatile int blockedCount;
+    public static volatile int allowedCount;
 
     private ParcelFileDescriptor tun;
     private Drain drain;
@@ -70,9 +71,13 @@ public class SaverVpnService extends VpnService {
                 .addAddress("fd00:7b:7b::1", 128)
                 .addRoute("::", 0)
                 .setBlocking(false);
-        int n = 0;
+        int n = 0, ok = 0;
         for (ApplicationInfo ai : pm.getInstalledApplications(0)) {
-            if (!Prefs.blockable(pm, ai, getPackageName()) || allowed.contains(ai.packageName)) continue;
+            if (!Prefs.blockable(pm, ai, getPackageName())) continue;
+            if (allowed.contains(ai.packageName)) {
+                ok++;
+                continue;
+            }
             try {
                 b.addAllowedApplication(ai.packageName); // "allowed into the filter" = blocked
                 n++;
@@ -108,6 +113,7 @@ public class SaverVpnService extends VpnService {
         running = true;
         stopping = false;
         blockedCount = n;
+        allowedCount = ok;
         Prefs.setSaverWanted(this, true);
         lastDay = Usage.dayKey(System.currentTimeMillis());
         handler.removeCallbacks(tick);

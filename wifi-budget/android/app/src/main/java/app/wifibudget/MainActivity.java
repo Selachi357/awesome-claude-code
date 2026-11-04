@@ -409,7 +409,7 @@ public class MainActivity extends Activity {
         binding = false;
         if (SaverVpnService.running) {
             saverInfo.setText("On" + (Prefs.saverAuto(this) ? " (switched on automatically)" : "") + ": "
-                    + SaverVpnService.blockedCount + " apps blocked, " + allowedCount() + " allowed.");
+                    + SaverVpnService.blockedCount + " apps blocked, " + SaverVpnService.allowedCount + " allowed.");
         } else {
             int auto = Prefs.autoSaverPct(this);
             saverInfo.setText("Off." + (auto > 0 ? " Turns on by itself at " + auto + "%." : ""));
@@ -419,10 +419,6 @@ public class MainActivity extends Activity {
 
         if (s.apps != null) renderApps(s.apps, s.limit);
         if (s.days != null) renderDays(s.days, s.limit);
-    }
-
-    private int allowedCount() {
-        return Prefs.allowed(this).size();
     }
 
     private void renderApps(List<Usage.AppUse> apps, long limit) {
