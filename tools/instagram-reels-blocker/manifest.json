@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Instagram Reels Blocker",
+  "version": "1.0.0",
+  "description": "Hides Reels and short-form video on instagram.com and redirects Reels pages to your feed.",
+  "content_scripts": [
+    {
+      "matches": ["https://www.instagram.com/*"],
+      "css": ["block.css"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "instagram-reels-blocker@local"
+    }
+  }
+}

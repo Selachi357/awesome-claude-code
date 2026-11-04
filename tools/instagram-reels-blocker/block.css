@@ -1,0 +1,25 @@
+/* Instagram Reels Blocker — hides Reels / short-form video on instagram.com.
+   Instagram's class names are obfuscated and change often, so every rule
+   keys off link targets (href), which are stable. */
+
+/* Sidebar / bottom-bar "Reels" navigation entry */
+a[href="/reels/"],
+a[href^="/reels/"] {
+  display: none !important;
+}
+
+/* Feed posts that are reels */
+article:has(a[href*="/reel/"]) {
+  display: none !important;
+}
+
+/* Explore grid tiles and profile grid tiles that link to a reel */
+div:has(> a[href*="/reel/"]) {
+  display: none !important;
+}
+
+/* "Reels" tab on profile pages (e.g. /username/reels/) */
+a[href$="/reels/"][role="tab"],
+a[role="tab"][href*="/reels"] {
+  display: none !important;
+}
