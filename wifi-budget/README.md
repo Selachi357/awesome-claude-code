@@ -3,6 +3,10 @@
 Tracks how much data your computer uses on capped Wi-Fi (for example a ship with **1.5 GB per day**).
 The count **resets every day at 00:00 UTC**. It also has a **Data Saver** mode that blocks data you don't need.
 
+> **On Android?** Install **[WifiBudget.apk](WifiBudget.apk)**. It does the same on your phone,
+> including a Data Saver that blocks every app you haven't allowed. See [android/README.md](android/README.md).
+> The rest of this page is about the laptop version (Windows / macOS / Linux).
+
 <img src="dashboard.png" width="320" alt="Dashboard">
 
 ## Setup (one time, while you still have a connection)
@@ -86,8 +90,7 @@ python wifi_budget.py saver off
 ```
 
 ## More ways to save data
-- **Phone:** turn on Low Data Mode (iPhone: Settings → Wi-Fi → ⓘ → Low Data Mode) or
-  Data Saver / "Treat as metered" (Android: Wi-Fi network → Advanced). Turn off iCloud Photos / Google Photos backup,
+- **Phone:** on Android use the app above. On iPhone turn on Low Data Mode (Settings → Wi-Fi → ⓘ → Low Data Mode). Turn off iCloud Photos / Google Photos backup,
   and turn off automatic app updates. The phone's own data-usage screen shows Wi-Fi totals per app.
 - **Mac:** System Settings → Wi-Fi → Details → **Low Data Mode**.
 - **Streaming:** set YouTube and Netflix to 480p or lower. 1080p uses about 1.5–3 GB an hour, so your whole day's allowance.
